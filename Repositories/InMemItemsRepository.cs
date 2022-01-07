@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace Catalog.Repositories 
 {
-    public class InMemItemsRepository 
+
+    public class InMemItemsRepository : IItemsRepository
     {
         private readonly List<Item> items = new()
         {
@@ -14,7 +15,8 @@ namespace Catalog.Repositories
             new Item { Id = Guid.NewGuid(), Name = "Item 2", Price = 20, CreatedDate = DateTimeOffset.Now }
 
         };
-        public IEnumerable<Item> GetItems(){
+        public IEnumerable<Item> GetItems()
+        {
             return items;
         }
         public Item GetItem(Guid id) => items.Where(i => i.Id == id).SingleOrDefault();
